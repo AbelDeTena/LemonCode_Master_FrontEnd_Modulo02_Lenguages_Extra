@@ -1,0 +1,16 @@
+import "./01-biggestWord";
+import "./02-values";
+import "./03-califications";
+import "./04-checkArguments";
+import "./05-equal";
+import "./06-deepEqual";
+import "./07-dices";
+import "./08-includes";
+import "./09-primes";
+import "./10-reverseText";
+import "./11-subsets";
+import "./12-zip";
+import "./13-zzcrytp";
+import "./14-fibonacci";
+import "./15-playersOrder";
+import "./16-swap";

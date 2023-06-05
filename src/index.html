@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02 Languages opcionales</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Laboratorio 02</h1>
+        <h2>Módulo Languages</h2>
+      </div>
+      <h2>Ejercicios opcionales</h2>
+    </header>
+    <main>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Biggest Word</h3>
+        <section>          
+          <p>Crea una función que reciba una frase en formato string y devuelva la palabra más larga. En caso de haber varias con longitud máxima que devuelva siempre la primera. Ten en cuenta que consideramos una palabra a aquello que esté separado por espacios.</p>
+          <pre><code class="language-javascript">const biggestWord = (phrase) =>
+            phrase.split(" ").sort((a, b) => b.length - a.length);</code></pre>
+          <form>            
+            <button id="biggestWordButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Values</h3>
+        <section>          
+          <p>Escribe una función que devuelva una lista de valores de todas las propiedades de un objeto. Evita añadir las propiedades heredadas en caso de ser instancia de una clase.</p>
+          <pre><code class="language-javascript">const values = (obj) => Object.values(obj);</code></pre>
+          <form>            
+            <button id="valuesButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Califications</h3>
+        <section>          
+          <p>**NOTA IMPORTANTE**: Realiza primero el ejercicio "Values".</p>
+          <p> Dada la calificación de alumnos de una clase en forma de objeto como el siguiente:            
+            
+            const eso2o = {
+              David: 8.25,
+              Maria: 9.5,
+              Jose: 6.75,
+              Juan: 5.5,
+              Blanca: 7.75,
+              Carmen: 8,
+            }</p>
+            
+           <p>Implementa una función que muestre la media de la clase de forma textual, es decir, siguiendo el sistema de calificación español:
+            
+            - Matrícula de Honor = 10
+            - Sobresaliente = entre 9 y 10
+            - Notable = entre 7 y 9
+            - Bien = entre 6 y 7
+            - Suficiente = entre 5 y 6
+            - Insuficiente = entre 4 y 5
+            - Muy deficiente = por debajo de 4</p>
+          <pre><code class="language-javascript">import {values} from "./02-values";
+
+            function printAverage(classResults) {
+                const notas = values(classResults);
+                const notaMedia = notas.reduce((acc, item) => acc + item) / notas.length;
+              
+                let calificacion;
+              
+                switch (true) {
+                  case notaMedia === 10:
+                    calificacion = "Matrícula de Honor";
+                    break;
+                  case notaMedia >= 9 && notaMedia < 10:
+                    calificacion = "Sobresaliente";
+                    break;
+                  case notaMedia >= 7 && notaMedia < 9:
+                    calificacion = "Notable";
+                    break;
+                  case notaMedia >= 6 && notaMedia < 7:
+                    calificacion = "Bien";
+                    break;
+                  case notaMedia >= 5 && notaMedia < 6:
+                    calificacion = "Suficiente";
+                    break;
+                  case notaMedia >= 4 && notaMedia < 5:
+                    calificacion = "Insuficiente";
+                    break;
+                  default:
+                    calificacion = "Muy deficiente";
+                }   
+                return calificacion;
+              }
+              </code></pre>
+          <form>            
+            <button id="calificationsButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Check Arguments</h3>
+        <section>          
+          <p>Es muy habitual en javascript, al recibir argumentos de una función, querer asegurarnos de que no sean `undefined` o `null`. En este ejercicio debes convertir el código de abajo en algo equivalente pero más compacto y expresivo. Piensa en el operador ternario y también en el operador OR. Puedes suponer que input es siempre de tipo string, incluyendo `null` o `undefined`. Es decir, no vas a recibir números, objetos, etc.</p>
+          <pre><code class="language-javascript">const f = (input) => {
+            let result = input === undefined ? "Unknown" : input === null ? "" : input;
+            return result;
+          };  
+        
+        const a = undefined;
+        const b = null;
+        const c = "string";
+        
+        console.log(f(a));
+        console.log(f(b));
+        console.log(f(c));
+        </code></pre>
+          <form>            
+            <button id="checkArgumentsButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Equal</h3>
+        <section>          
+          <p>Suponiendo objetos sin anidamiento y con propiedades primitivas, construye una función que compare el contenido de 2 objetos.Recuerda, los objetos tienen un método `hasOwnProperty` que nos indica si dicho objeto tiene o no una propiedad concreta. Ejemplo `a.hasOwnProperty("name")`, si `a` tiene una propiedad `name` nos devolverá `true`, en caso contrario `false`.</p>
+          <pre><code class="language-javascript">function isEqual(a, b) {
+            const propiedadesA = Object.keys(a);
+            const propiedadesB = Object.keys(b);
+          
+            if (propiedadesA.length === propiedadesB.length) {
+              return propiedadesA.every((propiedad) => {
+                return b.hasOwnProperty(propiedad) && a[propiedad] === b[propiedad];
+              });
+            } else return false;
+          }
+          </code></pre>
+          <form>            
+            <button id="equalButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Deep Equal</h3>
+        <section>          
+          <p>Vamos a mejorar la solución del apartado A suponiendo ahora que si puede existir anidamiento de objetos. Recuerda que el operador `typeof` en Javascript nos devuelve un string indicando el tipo de una variable de entre tipos primitivos, objetos o funciones. Ejemplo, `typeof 12 // "number"` o `typeof {} // "object"`.</p>
+          <pre><code class="language-javascript">//funcion recursiva
+            function isDeepEqual(a, b) {
+              if (typeof a !== "object" || typeof b !== "object") {
+                return a === b;
+              }
+            
+              const propiedadesA = Object.keys(a);
+              const propiedadesB = Object.keys(b);
+            
+              if (propiedadesA.length === propiedadesB.length) {
+                return propiedadesA.every((propiedad) => {
+                  return (
+                    b.hasOwnProperty(propiedad) && isDeepEqual(a[propiedad], b[propiedad])
+                  );
+                });
+              } else return false;
+            }</code></pre>
+          <form>            
+            <button id="deepEqualButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Dices</h3>
+        <section>          
+          <p>Empleando el concepto de _closure_, emula el comportamiento de 2 dados.</p>
+
+            <Utiliza>Utiliza un _closure_ para almacenar el resultado de tirar 2 dados, y encapsula junto a estos datos, métodos que implementen la siguiente funcionalidad:</p>
+            <ul>
+              <li>Hacer reset, poner a `undefined` o `null` ambos resultados.</li>
+              <li>Tirar los dados. **TIP**: Usa `Math.random()` para tiradas aleatorias.</li>
+              <li><ol>Imprimir el resultado por consola. Ten en cuenta lo siguiente:
+                <li>Informa al usuario que debe tirar primero cuando corresponda.</li>
+                <li>Si saca doble 6, ¡dale un premio!</li>
+              </ol></li>
+            </ul>
+            </p>
+          <pre><code class="language-javascript">function dices() {
+            let resultados = [undefined, undefined];
+          
+            function lanzamiento() {
+              return Math.floor(Math.random() * 6) + 1;
+            }
+          
+            function reset() {
+              resultados = [undefined, undefined];
+              console.log("Se ha reiniciado el resultado de los dados.");
+            }
+          
+            function tirarDados() {
+              resultados = resultados.map((item) => lanzamiento());
+              console.log("Los dados han sido lanzados. Puede consultar el resultado.");
+            }
+          
+            function verResultados() {
+              if (resultados.every((item) => item === undefined)) {
+                console.log("Debe lanzar los dados primero.");
+              } else {
+                console.log(
+                  `El resultado fue ${resultados[0]} para el primer dado y ${resultados[1]} para el segundo.`
+                );
+          
+                if (resultados.every((item) => item === 6)) {
+                  console.log(
+                    "¡Enhorabuena! Obtienes un premio por sacar la puntuación máxima."
+                  );
+                }
+          
+                reset();
+              }
+            }
+          
+            return {
+              reset,
+              tirarDados,
+              verResultados,
+            };
+          }
+          
+          const juegoDados = dices();</code></pre>
+          <form>            
+            <button id="dicesButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Includes</h3>
+        <section>          
+          <p>En ES7 ya existe una función de manejo de arrays llamada `Array.includes()` que indica si un determinado valor figura entre los items de un array dado. Crea una función en ES5 con el mismo comportamiento, es decir, una función que reciba un array y un valor y devuelva un `boolean` indicando si el valor está dentro del array. El ejercicio anterior puede quedar simplificado si utilizas una función de los arrays
+            que devuelve el índice de un elemento dado.</p>
+          <pre><code class="language-javascript">function includes(array, value) {
+            return array.indexOf(value)!==-1;    
+          }</code></pre>
+          <form>            
+            <button id="includesButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Primes</h3>
+        <section>          
+          <p>Crea una función tal que, dado un número entero de inicio `from` y otro de fin `to`, encuentre los números primos entre ellos y los muestre por pantalla. Puedes crearte una función auxiliar para saber si un número es primo o no, y utilizarla en tu función principal. Es buena práctica crear funciones auxiliares que hagan una sola cosa (principio de única responsabilidad). Se puede mejorar mucho el rendimiento del ejercicio anterior. Al buscar si un numero es primo, podemos dejar de comprobar si es divisible por cada entero mayor que 1 una vez alcancemos la raiz cuadrada de dicho número.</p>
+          <pre><code class="language-javascript">function showPrimes(from, to) {
+            const numeros = crearArray(from, to);
+          
+            numeros.forEach((numero) => {
+              if (esPrimoOptimizada(numero)) {
+                console.log(`${numero} is PRIME!`);
+              } else {
+                console.log(`${numero} is not a prime`);
+              }
+            });
+          }
+          
+          function crearArray(from, to) {
+            const numeros = [];
+            for (let index = from; index <= to; index++) {
+              numeros.push(index);
+            }
+            return numeros;
+          }
+          
+          function esPrimo(numero) {
+            const restos = [];
+            for (let index = numero - 1; index > 1; index--) {
+              restos.push(numero % index);
+            }
+            return restos.indexOf(0) === -1;
+          }
+          
+          function esPrimoOptimizada(numero) {
+            const restos = [];
+            for (let index = 2; index <= Math.sqrt(numero); index++) {
+              restos.push(numero % index);
+            }
+            return restos.indexOf(0) === -1;
+          }
+          
+          </code></pre>
+          <form>            
+            <button id="primesButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Reverse Text</h3>
+        <section>          
+          <p>Se puede mejorar mucho el rendimiento del ejercicio anterior.
+            Al buscar si un numero es primo, podemos dejar de comprobar si es divisible por cada entero mayor que 1 una vez alcancemos la raiz cuadrada de dicho número.</p>
+          <pre><code class="language-javascript">function reverseText(text) {
+            return text.split(" ").reverse().join(" ");
+          }</code></pre>
+          <form>            
+            <button id="reverseTextButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Subsets</h3>
+        <section>          
+          <p>Escribe una función que acepte un string como argumento y devuelva todas las partes finales de dicha palabra. Repite el ejercicio anterior sin utilizar arrays auxiliares ni bucles for/do/while.</p>
+          <pre><code class="language-javascript">function subsets(word) {
+            return Array.from(word, (ac, i) => word.slice(i));
+          }</code></pre>
+          <form>            
+            <button id="subsetsButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Zip</h3>
+        <section>          
+          <p>Crea una función `zipObject` tal que acepte un array de claves como primer argumento y un array de valores como segundo argumento y cuyo objetivo sea crear un objeto uniendo las claves con sus valores. Asumir que el array de claves tiene como mínimo la misma longitud que el de valores. Si no hay valores suficientes para todas las claves evita que aparezcan como `undefined`.</p>
+          <pre><code class="language-javascript">function subsets(word) {
+            return Array.from(word, (ac, i) => word.slice(i));
+          }</code></pre>
+          <form>            
+            <button id="zipButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Zz Crytp</h3>
+        <section>          
+          <p> Descifra el siguiente secreto:</p>
+          <p> rg!qg yq,urae: ghsrf wuran shrerg jq,u'qf ra r' ,qaq' er g'q,o rg,fuwurae: m!hfua( t'usqfuq ,:apu(:m xv"</p>            
+          <p> Sabiendo que el alfabeto original ha sufrido la siguiente transformación:</p>
+          <p> var plain = "abcdefghijklmnopqrstuvwxyz:()!¡,'";</p>
+          <p> var cipher = "qw,ert(yuio'pa:sdfg!hjklz¡xcv)bnm";</p>
+          <pre><code class="language-javascript">var plain = "abcdefghijklmnopqrstuvwxyz:()!¡,'";
+            var cipher = "qw,ert(yuio'pa:sdfg!hjklz¡xcv)bnm";
+            
+            function decrypt(secret) {
+              const message = [];
+              for (let i = 0; i < secret.length; i++) {
+                const letter = secret[i];
+                const index = cipher.indexOf(letter);
+                if (index !== -1) {
+                  message.push(plain[index]);
+                } else {
+                  message.push(letter);
+                }
+              }
+              return message.join("");
+            }</code></pre>
+          <form>            
+            <button id="zzButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Fibonacci</h3>
+        <section>          
+          <p>Implementa una función para calcular el n-enésimo termino de la sucesión de Fibonacci. Esta sucesión tiene sus dos primeros términos prefijados. Y a partir de aqui, el siguiente término se calcula a partir de los dos anteriores. Es el clásico problema donde el término siguiente depende del actual y el anterior. También se puede abordar con recursividad, pero buscamos una solución iterativa para hacer uso de destructuring con múltiples asignaciones.</p>
+          <pre><code class="language-javascript">const fib = (n) => {
+            const fibonacci = [0, 1];
+            let [a, b] = fibonacci;
+          
+            for (let i = 2; i <= n; i++) {
+              [a, b] = [b, a + b];
+              fibonacci.push(b);
+            }
+          
+            return fibonacci[n];
+          };</code></pre>
+          <form>            
+            <button id="fibonacciButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Players Order</h3>
+        <section>          
+          <p>En una gran cantidad de juegos el sistema de turnos es sencillo, una vez el jugador actual ha consumido su turno, pasa al final de la cola y le toca al siguiente. Dada una lista inicial de jugadores, implementa una función que devuelva la nueva lista de jugadores, en el orden correcto, después de X turnos. Aunque se puede resolver con el operador `%`, intenta idear una solución usando spread/rest y destructuring.</p>
+          <pre><code class="language-javascript">const getPlayersOrder = (players, turns) => {
+            for (let index = 0; index < turns; index++) {
+              let [first, ...others] = players;
+              players = [...others, first];
+            }
+            return players;
+          };
+          </code></pre>
+          <form>            
+            <button id="ordersButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-js" id="exercise-1">
+        <h3>Swap</h3>
+        <section>          
+          <p>¿Sabrías intercambiar el valor de estas 2 variables en una sola línea?</p>
+          <pre><code class="language-javascript">let a = "A";
+            let b = "B";
+            
+            [a, b] = [b, a];
+            </code></pre>
+          <form>            
+            <button id="swapButton" type="submit">Mostrar por consola</button>                     
+          </form>
+        </section>        
+      </article>
+      <article class="exercise-ts" id="exercise-4">
+        <h3>
+          Calification Summary:<span>Resuelto con Typescript</span> =>
+        </h3>
+        <section>          
+          <p>Utilizando TypeScript escribe una función que reciba una lista de estudiantes (que tienen nombre y una lista de notas) y devuelva otra lista donde por cada estudiante devuelva su nombre, su nota más alta y la media de sus notas.</p>
+
+          <p>Crea para ello dos entidades, una para representar al estudiante (`Student`) y otra para representar su nombre, nota más alta y media de notas (`StudentSummary`).</p>
+            
+          <p>No se permite el uso de clases. En caso de usar funciones auxiliares típalas. Puedes usar la función `Number.prototype.toPrecision(3)` para reducir el número de decimales de la media de calificaciones a tres números.</p>
+          <pre><code class="language-typescript">interface Student {
+            name: string;
+            califications: number[];
+          }
+          
+          interface StudentSummary {
+            name: string;
+            highestCalification: number;
+            averageCalifications: number;
+          }
+          
+          type CalculationFn = (califications: number[]) => number;
+          type SummaryFn = (studentList: Student[]) => StudentSummary[];
+          
+          const students: Student[] = [
+            {
+              name: "Juan",
+              califications: [1.56, 2.13, 7.53, 9.71, 2.67, 2.43, 2.86, 9.42, 8.08, 7.34],
+            },
+            {
+              name: "Álvaro",
+              califications: [4.49, 1.52, 7.0, 8.3, 8.01, 6.45, 3.72, 3.27, 6.99, 6.01],
+            },
+            {
+              name: "María",
+              califications: [2.99, 7.33, 1.14, 3.26, 0.98, 2.94, 4.99, 4.51, 1.8, 9.3],
+            },
+            {
+              name: "Jorge",
+              califications: [4.6, 3.63, 9.07, 9.03, 3.05, 6.61, 4.81, 1.39, 2.97, 8.69],
+            },
+            {
+              name: "Mónica",
+              califications: [9.72, 6.07, 1.11, 4.72, 0.04, 1.56, 0.66, 3.87, 6.97, 9.48],
+            },
+          ];
+          
+          const highestCalification: CalculationFn = (
+            califications: number[]
+          ): number => {
+            const highest = califications.sort((a, b) => b - a)[0];
+            return Number(highest.toPrecision(3));
+          };
+          
+          const averageCalifications: CalculationFn = (
+            califications: number[]
+          ): number => {
+            const average =
+              califications.reduce((acc, act) => acc + act) / califications.length;
+            return Number(average.toPrecision(3));
+          };
+          
+          const summarizeClassRoom: SummaryFn = (
+            studentList: Student[]
+          ): StudentSummary[] => {
+            const StudentSummary = studentList.map((student) => {
+              return {
+                name: student.name,
+                highestCalification: highestCalification(student.califications),
+                averageCalifications: averageCalifications(student.califications),
+              };
+            });
+            return StudentSummary;
+          };
+          </code></pre>          
+          <button id="calificationButton">Mostrar por consola</button>          
+        </section>
+      </article> 
+      <article class="exercise-ts" id="exercise-4">
+        <h3>
+          Curry Setter:<span>Resuelto con Typescript</span> =>
+        </h3>
+        <section>          
+          <p>En un formulario tenemos un objeto con los campos `name`, `surname` y `age` que representan un usuario. Crea una función `set` que reciba un objeto con los campos de usuario, el nombre de una propiedad y su valor y actualice la propiedad del objeto con el valor pasado como argumento. El ejercicio debe cumplir la siguiente norma: la función debe ser pura, es decir, debe crear un nuevo objeto sin modificar el existente.</p>
+
+          <p>Currifica dicha función para que permita crear funciones donde el argumento del nombre de la propiedad esté configurado previamente.
+            Es decir, modifica la función `set` para poder crear `setName`, `setSurname` y `setAge` que reciban sólo el objeto y el valor y sepan qué propiedad actualizar.</p>         
+          <pre><code class="language-typescript">type User = { name: string; surname: string; age: number };
+
+            const julia: User = { name: "Julia", surname: "Álvarez", age: 19 };
+            const updatedJulia: User = set(julia, "age", 25);
+            
+            function set(name: User, property: keyof User, value: string | number): User {
+              return {
+                ...name,
+                [property]: value,
+              };
+            }
+            //opcional
+            
+            const setName = (name: User, value: string) => set(name, "name", value);
+            const setSurname = (name: User, value: string) => set(name, "surname", value);
+            const setAge = (name: User, value: number) => set(name, "age", value);
+            </code></pre>          
+          <button id="currySetterButton">Mostrar por consola</button>          
+        </section>
+      </article>    
+    </main>
+  </body>
+</html>
